@@ -44,9 +44,10 @@ class loginState extends State<LoginClass> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Text(
-                            'Tagline tagline tagline',
+                            'For healthier living',
                             style: GoogleFonts.lato(
                               fontSize:25,
+                              color: Colors.black.withOpacity(0.8),
                           ),
                         ),
                       ),
@@ -75,10 +76,10 @@ class loginState extends State<LoginClass> {
                   color: MyColors.loginAccent,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
+                        color: Colors.black.withOpacity(0.2),
                         spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: Offset(0, 2), // changes position of shadow
+                        blurRadius: 2,
+                        offset: Offset(0, 1), // changes position of shadow
                       ),
                     ],
                 ),
@@ -101,7 +102,7 @@ class loginState extends State<LoginClass> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20,top: 80),
+            padding: const EdgeInsets.only(left: 20,top: 100),
             child: Align(
               alignment: Alignment.centerLeft,
               child: SizedBox(

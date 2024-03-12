@@ -1,16 +1,7 @@
-# NutriScan
+# NUTRISCAN
 
-A new Flutter project.
+A cross-platform mobile application to ...
 
-## Getting Started
+## DESCRIPTION
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+In an era marked by heightened concerns regarding product safety and transparency, consumers encounter significant challenges in accurately assessing the nutritional content of consumables and identifying harmful chemicals in cosmetics. This lack of transparency not only poses health risks but also complicates decision-making processes, leaving consumers vulnerable to potentially harmful products. To address these challenges, we propose a comprehensive mobile application leveraging Barcode technology to swiftly scan product labels and provide users with detailed nutritional analysis for consumables, while also identifying harmful chemicals present in cosmetics. This innovative tool offers personalized recommendations for safer alternatives, considering user preferences and health considerations. By empowering consumers with access to transparent and actionable information, our solution facilitates informed decision-making and promotes healthier consumption habits. Moreover, the application serves as a catalyst for increased accountability among product manufacturers, encouraging them to prioritize the safety and well-being of consumers by enhancing labelling practices and ingredient transparency. Through these efforts, our solution aims to revolutionize the consumer experience, fostering a marketplace where health-conscious choices are readily accessible and supported. This application illustrates its potential to redefine modern consumer behaviour and product safety standards.
