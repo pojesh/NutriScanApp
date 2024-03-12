@@ -1,4 +1,4 @@
-# untitled1
+# NutriScan
 
 A new Flutter project.
 
