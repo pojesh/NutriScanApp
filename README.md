@@ -1,6 +1,6 @@
 # NUTRISCAN
 
-A cross-platform mobile application to ...
+A cross-platform mobile application made with Flutter
 
 ## DESCRIPTION
 
