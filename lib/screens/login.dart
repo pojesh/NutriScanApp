@@ -4,8 +4,8 @@ import 'package:untitled1/assets/painters/circles.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled1/assets/collorrs.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:haptic_feedback/haptic_feedback.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled1/firebase/services/signin.dart';
 
 class LoginClass extends StatefulWidget {
   const LoginClass({Key? key}) : super(key: key);
@@ -88,17 +88,7 @@ class loginState extends State<LoginClass> {
                     size: 35,
                 ),
               ),
-              onTap: () {
-                HapticFeedback.vibrate();
-
-                Fluttertoast.showToast(
-                  msg: "Sign-in with Google",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                );
-              }
+              onTap: signInWithGoogle,
             ),
           ),
           Padding(
