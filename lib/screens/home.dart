@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/screens/scanner.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
-  final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Home> createState() => HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
       child: Column(
-        children: [],
+        children: [
+          Text(
+            'line of text',
+          ),
+        ],
       ),
     ));
   }

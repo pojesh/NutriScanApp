@@ -23,16 +23,23 @@ dependencies:
   fluttertoast: ^8.2.4
   firebase_auth: ^4.17.9
   google_sign_in: ^6.2.1
+  flutter_launcher_icons: ^0.13.1
 
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/nutriscanlogo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+
   flutter_lints: ^3.0.0
-
-
 
 
 flutter:
@@ -40,22 +47,13 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - lib/asset/images/nutriscanlogo.png
+    - lib/asset/images/google.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
+
   # fonts:
   #   - family: Schyler
   #     fonts:
@@ -68,5 +66,4 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+
