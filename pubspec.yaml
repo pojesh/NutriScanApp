@@ -48,7 +48,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/asset/images/nutriscanlogo.png
+    - lib/asset/images/nutriscanlogopng.png
     - lib/asset/images/google.png
 
 

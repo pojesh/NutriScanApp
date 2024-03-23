@@ -26,7 +26,7 @@ class loginState extends State<LoginClass> {
               Padding(
                 padding: const EdgeInsets.only(top:175,bottom:25),
                 child: Image(
-                    image: AssetImage('lib/asset/images/nutriscanlogo.png'),
+                    image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
                     width: 60,
                 ),
               ),
@@ -40,25 +40,57 @@ class loginState extends State<LoginClass> {
                 ), //style
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 75,bottom: 30),
 
                   child: SizedBox(
-                    width: 50,
+                    width: 275,
                     height: 50,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10),
+                    child: GestureDetector(
+
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(10),
+                        ),
+                        child:
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left:28,right:10),
+                                  child: Image(
+                                    image: AssetImage('lib/asset/images/google.png'),
+                                    width: 33,
+                                  ),
+                                ),
+                                Text(
+                                  'Continue with Google',
+                                  style: GoogleFonts.lexend(
+                                    fontSize: 17,
+                                    textStyle: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                )
+                              ],
+                            )
                       ),
-                      child:
-                          Image(
-                            image: AssetImage('lib/asset/images/google.png'),
-                            width: 50,
-                          )
                     ),
                   ),
                 ),
-
+              SizedBox(
+                width: 210,
+                child: Text(
+                  'By clicking “Continue with Google”, you agree to our ToS and Privacy Policy',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lexend(
+                    fontSize: 10,
+                    color: Colors.black.withOpacity(0.6),
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.w500,
+                    )
+                  )
+                ),
+              )
             ], // children
           ),
       ),
