@@ -1,12 +1,14 @@
 // ignore_for_file: unnecessary_import, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled1/asset/painters/logincurve.dart';
 import 'package:untitled1/asset/painters/circles.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled1/asset/collorrs.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled1/firebase/services/signin.dart';
+import 'package:untitled1/screens/home.dart';
 
 class LoginClass extends StatefulWidget {
   const LoginClass({Key? key}) : super(key: key);
@@ -46,7 +48,15 @@ class loginState extends State<LoginClass> {
                     width: 275,
                     height: 50,
                     child: GestureDetector(
-
+                      onTap: () {
+                        Fluttertoast.showToast(
+                          msg: 'Login Successful',
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
