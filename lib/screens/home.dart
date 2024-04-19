@@ -1,16 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/screens/scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled1/screens/profile.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
 
   @override
   State<Home> createState() => HomeState();
 }
 
 class HomeState extends State<Home> {
+
+  var userName = 'Tony Stark';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,7 @@ class HomeState extends State<Home> {
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Hello 👋🏻\nTony Stark',
+                          'Hello 👋🏻\n' + userName,
                           style: GoogleFonts.lexend(
                               fontSize:22,
                               textStyle: TextStyle(
@@ -31,10 +35,19 @@ class HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        Image(
-                          image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
-                          width: 44,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(Profile());
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                            child: Image(
+                                  image: AssetImage('lib/asset/images/gosling.png'),
+                                  width: 44,
+                                ),
+
                         ),
+                      ),
                       ],
                     ),
                   ),
@@ -61,8 +74,8 @@ class HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(left:10,top:40),
                   child: SizedBox(
-                    height: 176.82,
-                    width: 158.16,
+                    height: 178,
+                    width: 160,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
@@ -73,7 +86,7 @@ class HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(top:30,bottom:10),
                             child: Image(
-                              image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
+                              image: AssetImage('lib/asset/images/scan.png'),
                               width: 55,
                             ),
                           ),
@@ -100,8 +113,8 @@ class HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(right:10,top:40),
                   child: SizedBox(
-                    height: 176.82,
-                    width: 158.16,
+                    height: 178,
+                    width: 160,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
@@ -112,14 +125,14 @@ class HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(top:30,bottom:10),
                             child: Image(
-                              image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
+                              image: AssetImage('lib/asset/images/avoid.png'),
                               width: 55,
                             ),
                           ),
                           Text(
                               'Products to Avoid',
                               style: GoogleFonts.lexend(
-                                fontSize: 18,
+                                fontSize: 14,
                               )
                           ),
                           Text(
@@ -144,8 +157,8 @@ class HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(left:10,top:60),
                   child: SizedBox(
-                    height: 176.82,
-                    width: 158.16,
+                    height: 178,
+                    width: 160,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
@@ -156,14 +169,14 @@ class HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(top:30,bottom:10),
                             child: Image(
-                              image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
+                              image: AssetImage('lib/asset/images/alternatives.png'),
                               width: 55,
                             ),
                           ),
                           Text(
                               'Healthy Alternatives',
                               style: GoogleFonts.lexend(
-                                fontSize: 16,
+                                fontSize: 13,
                               )
                           ),
                           Text(
@@ -183,8 +196,8 @@ class HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(right:10,top:60),
                   child: SizedBox(
-                    height: 176.82,
-                    width: 158.16,
+                    height: 178,
+                    width: 160,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
@@ -195,7 +208,7 @@ class HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(top:30,bottom:10),
                             child: Image(
-                              image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
+                              image: AssetImage('lib/asset/images/history.png'),
                               width: 55,
                             ),
                           ),

@@ -2,10 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:untitled1/asset/painters/logincurve.dart';
-import 'package:untitled1/asset/painters/circles.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled1/asset/collorrs.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled1/firebase/services/signin.dart';
 import 'package:untitled1/screens/home.dart';
@@ -45,7 +42,7 @@ class loginState extends State<LoginClass> {
                 padding: const EdgeInsets.only(top: 75,bottom: 30),
 
                   child: SizedBox(
-                    width: 275,
+                    width: 276,
                     height: 50,
                     child: GestureDetector(
                       onTap: () {
@@ -66,7 +63,7 @@ class loginState extends State<LoginClass> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left:28,right:10),
+                                  padding: const EdgeInsets.only(left:12,right:10),
                                   child: Image(
                                     image: AssetImage('lib/asset/images/google.png'),
                                     width: 33,
