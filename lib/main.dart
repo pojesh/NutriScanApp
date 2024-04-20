@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/screens/home.dart';
-import 'package:untitled1/screens/login.dart';
+import 'package:untitled1/screens/lander.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -17,9 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: Color(0xffff4f2f2)
+        scaffoldBackgroundColor: const Color(0xfff4f2f2)
       ),
-      home: const Home(),
+      home: LanderClass(),
     );
   }
 }
