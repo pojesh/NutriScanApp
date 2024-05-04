@@ -1,17 +1,34 @@
 // ignore_for_file: unnecessary_import, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:untitled1/screens/product_details.dart';
 import 'package:untitled1/screens/profile.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled1/firebase/services/login_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
 
 class LanderClass extends StatelessWidget {
   final controller = Get.put(LoginController());
+  final RxString barcodeResult = ''.obs;
 
+  Future<void> scanBarcode() async {
+    try {
+      final String barcodeResult = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        false,
+        ScanMode.BARCODE,
+      );
+      debugPrint(barcodeResult);
+      // Navigate to the ResultPage with the barcode result
+      Get.to(() => ProductDetails(barcodeResult));
+    } catch (e) {
+      debugPrint('Error scanning barcode: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,36 +184,39 @@ class LanderClass extends StatelessWidget {
               child: SizedBox(
                 height: 178,
                 width: 160,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top:30,bottom:10),
-                        child: Image(
-                          image: AssetImage('lib/asset/images/scan.png'),
-                          width: 55,
+                child: GestureDetector(
+                  onTap: () => scanBarcode(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top:30,bottom:10),
+                          child: Image(
+                            image: AssetImage('lib/asset/images/scan.png'),
+                            width: 55,
+                          ),
                         ),
-                      ),
-                      Text(
-                          'Scan new',
-                          style: GoogleFonts.lexend(
-                            fontSize: 18,
-                          )
-                      ),
-                      Text(
-                          'Scanned 483',
-                          style: GoogleFonts.lexend(
-                              fontSize: 13,
-                              textStyle: TextStyle(
-                                  fontWeight: FontWeight.w300
-                              )
-                          )
-                      )
-                    ],
+                        Text(
+                            'Scan new',
+                            style: GoogleFonts.lexend(
+                              fontSize: 18,
+                            )
+                        ),
+                        Text(
+                            'Scanned 483',
+                            style: GoogleFonts.lexend(
+                                fontSize: 13,
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.w300
+                                )
+                            )
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
