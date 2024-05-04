@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xfff4f2f2)
+          useMaterial3: true,
+          scaffoldBackgroundColor: const Color(0xfff4f2f2)
       ),
       home: LanderClass(),
     );

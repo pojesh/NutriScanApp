@@ -29,82 +29,82 @@ class LanderClass extends StatelessWidget {
 
   Column buildLogin() {
     return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top:175,bottom:25),
-              child: Image(
-                  image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
-                  width: 60,
-              ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top:175,bottom:25),
+          child: Image(
+            image: AssetImage('lib/asset/images/nutriscanlogopng.png'),
+            width: 60,
+          ),
+        ),
+        Text(
+          'NutriScan',
+          style: GoogleFonts.lexend(
+            fontSize:35,
+            textStyle: TextStyle(
+              fontWeight: FontWeight.w400,
             ),
-            Text(
-              'NutriScan',
-              style: GoogleFonts.lexend(
-                fontSize:35,
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w400,
-                ),
-              ), //style
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 75,bottom: 30),
+          ), //style
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 75,bottom: 30),
 
-                child: SizedBox(
-                  width: 276,
-                  height: 50,
-                  child: GestureDetector(
-                    onTap: () {
-                      /*Fluttertoast.showToast(
+          child: SizedBox(
+            width: 276,
+            height: 50,
+            child: GestureDetector(
+              onTap: () {
+                /*Fluttertoast.showToast(
                         msg: 'Login Successful',
                       );*/
-                      controller.login();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10),
-                      ),
-                      child:
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:12,right:10),
-                                child: Image(
-                                  image: AssetImage('lib/asset/images/google.png'),
-                                  width: 33,
-                                ),
-                              ),
-                              Text(
-                                'Continue with Google',
-                                style: GoogleFonts.lexend(
-                                  fontSize: 17,
-                                  textStyle: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )
-                              )
-                            ],
-                          )
-                    ),
+                controller.login();
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
+                  child:
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:12,right:10),
+                        child: Image(
+                          image: AssetImage('lib/asset/images/google.png'),
+                          width: 33,
+                        ),
+                      ),
+                      Text(
+                          'Continue with Google',
+                          style: GoogleFonts.lexend(
+                            fontSize: 17,
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                      )
+                    ],
+                  )
               ),
-            SizedBox(
-              width: 210,
-              child: Text(
-                'By clicking “Continue with Google”, you agree to our ToS and Privacy Policy',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lexend(
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 210,
+          child: Text(
+              'By clicking “Continue with Google”, you agree to our ToS and Privacy Policy',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lexend(
                   fontSize: 10,
                   color: Colors.black.withOpacity(0.6),
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w500,
                   )
-                )
-              ),
-            )
-          ], // children
-        );
+              )
+          ),
+        )
+      ], // children
+    );
   }
 
   Column buildHomePage() {
@@ -329,4 +329,3 @@ class LanderClass extends StatelessWidget {
     );
   }
 }
-
