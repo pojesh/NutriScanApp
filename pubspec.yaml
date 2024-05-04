@@ -19,12 +19,13 @@ dependencies:
   google_fonts: ^6.2.1
   haptic_feedback: ^0.4.2
   flutter_barcode_scanner: ^2.0.0
-  firebase_core: ^2.27.0
+  firebase_core: ^2.4.0
   fluttertoast: ^8.2.4
-  firebase_auth: ^4.17.9
+  firebase_auth: ^4.2.0
   google_sign_in: ^6.2.1
   flutter_launcher_icons: ^0.13.1
   get:
+  cloud_firestore:
 
 
 flutter_launcher_icons:
