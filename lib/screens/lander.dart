@@ -23,12 +23,19 @@ class LanderClass extends StatelessWidget {
         ScanMode.BARCODE,
       );
       debugPrint(barcodeResult);
-      // Navigate to the ResultPage with the barcode result
-      Get.to(() => ProductDetails(barcodeResult));
+
+      if (barcodeResult.length >= 9) {
+        final String gtin = barcodeResult.substring(3, 9);
+        Get.to(() => ProductDetailsPage(documentId: gtin));
+      } else {
+        // Handle invalid barcode result
+        debugPrint('Invalid barcode result');
+      }
     } catch (e) {
       debugPrint('Error scanning barcode: $e');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
