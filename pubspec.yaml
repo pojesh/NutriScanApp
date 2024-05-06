@@ -57,6 +57,11 @@ flutter:
     - lib/asset/images/scan.png
     - lib/asset/images/history.png
     - lib/asset/images/gosling.png
+    - lib/asset/images/Cube.png
+    - lib/asset/images/Experiment.png
+    - lib/asset/images/Saltshaker.png
+    - lib/asset/images/Wheat.png
+    - lib/asset/images/Wholefish.png
 
 
 

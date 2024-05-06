@@ -1,11 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart'; // Import GetX
+import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailsController extends GetxController {
   final String documentId;
-  var data = {}.obs; // Observe the data changes
+  var data = {}.obs;
   var mat_data = {}.obs;
 
   ProductDetailsController({required this.documentId});
@@ -13,7 +15,7 @@ class ProductDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchData(); // Fetch data when controller is initialized
+    fetchData();
   }
 
   Future<void> fetchData() async {
@@ -29,14 +31,13 @@ class ProductDetailsController extends GetxController {
           .get();
 
       if (snapshot.exists) {
-        data.value = snapshot.data() ?? {}; // Update data value with fetched data
+        data.value = snapshot.data() ?? {};
         mat_data.value = materials_snapshot.data() ?? {};
       } else {
         data.value = {};
         mat_data.value={};
       }
     } catch (e) {
-      // Handle error
       print('Error fetching data: $e');
       Fluttertoast.showToast(
         msg: "Error fetching data $e",
@@ -58,7 +59,6 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Document ID: $documentId');
     return Scaffold(
       appBar: AppBar(
         title: Text('Product Details'),
@@ -78,85 +78,163 @@ class ProductDetailsPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else {
-              return SingleChildScrollView(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              return Column(
                   children: [
-                    SizedBox(
-                      width: 50,
-                      child: Image.network(
-                        image_link, //URL with the URL of your image
-                        fit: BoxFit.cover, // You can change BoxFit to the desired fit
-                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          } else {
-                            return CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                  : null,
-                            );
-                          }
-                        },
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, left:35,bottom:15),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                image_link,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 40),
+                          Expanded( // Use Expanded instead of Flexible
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "$productName",
+                                  style: GoogleFonts.lexend(
+                                    fontSize: 24,
+                                    height:1.15,
+                                  ),
+                                ),
+                                SizedBox(height:5),
+                                Text(
+                                  manufacturer,
+                                  style: GoogleFonts.lexend(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(height:10),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: _getDotColor(score),
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width:10),
+                                    Text(
+                                      "$score/100",
+                                      style: GoogleFonts.lexend(
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      'Product Name: $productName',
-                      style: TextStyle(
-                          fontSize: 24.0, fontWeight: FontWeight.bold),
+                    Container(
+                      height: 1, // Adjust the height to make the line thicker
+                      width: 370,
+                      color: Colors.black, // Adjust the color of the line as needed
                     ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      'UID: $documentId',
-                      style: TextStyle(fontSize: 16.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25,top:20,bottom:10),
+                      child: Align(
+                        alignment : Alignment.centerLeft,
+                        child: Text(
+                          'Ingredients',
+                          style: GoogleFonts.lexend(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ),
-                    Text(
-                      'Manufacturer: $manufacturer',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      'Score: $score',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    SizedBox(height: 16.0),
-                    Text(
-                      'Ingredients:',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 8.0),
+                    SizedBox(height: 20),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: materials.entries.map<Widget>((entry) {
                         String fieldName = entry.key;
                         String value = entry.value.toString();
                         return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Field Name: $fieldName',
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 45,right:45),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    fieldName,
+                                    style: GoogleFonts.lexend(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+
+                                  SizedBox(width:100),
+                                  Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            value,
+                                            style: GoogleFonts.lexend(fontSize:14),
+                                          ),
+                                          SizedBox(width:10),
+                                          SizedBox(
+                                            width: 20,
+                                            height: 20,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: _getDotColor(int.parse(value)),
+                                                shape: BoxShape.circle,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                  )
+                                ],
+                              ),
                             ),
-                            Text(
-                              'Value: $value',
-                              style: TextStyle(fontSize: 16.0),
+                            SizedBox(height:24),
+                            Container(
+                              height:1,
+                              width: 370,
+                              color: Colors.grey,
                             ),
-                            SizedBox(height: 8.0),
+                            SizedBox(height: 24),
                           ],
                         );
                       }).toList(),
                     ),
-                  ],
-                ),
+                  ]
               );
             }
           });
         },
       ),
     );
+  }
+
+  Color _getDotColor(int score) {
+    int scoreValue = score ?? 0;
+    if (scoreValue >= 80) {
+      return Colors.green;
+    } else if (scoreValue >= 70) {
+      return Colors.lightGreen;
+    } else if (scoreValue >= 50) {
+      return Colors.yellow;
+    } else if (scoreValue >= 30) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
   }
 }
