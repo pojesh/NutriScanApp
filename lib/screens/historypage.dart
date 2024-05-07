@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled1/screens/product_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:untitled1/firebase/services/history_controller.dart';
 
 class HistoryPage extends StatelessWidget {
   final List<String> scannedProducts;
 
   const HistoryPage({super.key, required this.scannedProducts});
+
 
   @override
   Widget build(BuildContext context) {

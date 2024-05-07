@@ -10,12 +10,16 @@ import 'package:flutter/services.dart';
 import 'package:untitled1/firebase/services/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:untitled1/firebase/services/history_controller.dart';
+import 'package:untitled1/firebase/services/user_history.dart';
 
 
 class LanderClass extends StatelessWidget {
   final controller = Get.put(LoginController());
   final RxString barcodeResult = ''.obs;
   final List<String> scannedProducts = <String>[].obs;
+  final firestoreService = FirestoreService();
+  final RxInt historyCount = 0.obs;
 
   Future<void> scanBarcode() async {
     try {
@@ -32,6 +36,11 @@ class LanderClass extends StatelessWidget {
         if (!scannedProducts.contains(gtin)) {
           scannedProducts.add(gtin);
         }
+        firestoreService.addProductToHistory(
+            controller.getUserId(),
+            controller.googleAccount.value?.displayName??'Null',
+            gtin
+        );
         Get.to(() => ProductDetailsPage(documentId: gtin));
       }
       else {
@@ -142,6 +151,7 @@ class LanderClass extends StatelessWidget {
 
   Column buildHomePage() {
     var userName = controller.googleAccount.value?.displayName ?? ' ';
+    Get.put(UserHistory());
     return Column(
       children: [
         Container (
@@ -330,7 +340,15 @@ class LanderClass extends StatelessWidget {
 
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(() => HistoryPage(scannedProducts: scannedProducts));
+                      // Access the UserController instance
+                      UserHistory userHistoryController = Get.find<UserHistory>();
+
+                      // Call fetchUserHistory to get the user history list
+                      userHistoryController.fetchUserHistory().then((userHistory) {
+                        historyCount.value = userHistory.length;
+                        // Navigate to the HistoryPage and pass the user history as scannedProducts
+                        Get.to(() => HistoryPage(scannedProducts: userHistory));
+                      });
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -353,7 +371,7 @@ class LanderClass extends StatelessWidget {
                               )
                           ),
                           Text(
-                              'History ${scannedProducts.length}',
+                              'History ${historyCount}',
                               style: GoogleFonts.lexend(
                                   fontSize: 13,
                                   textStyle: TextStyle(

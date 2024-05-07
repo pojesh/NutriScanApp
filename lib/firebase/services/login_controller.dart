@@ -21,4 +21,12 @@ class LoginController extends GetxController {
       // Handle sign-in errors
     }
   }
+  String getUserId() {
+    if (googleAccount.value != null) {
+      // Assuming user ID is same as email for simplicity
+      return googleAccount.value!.email;
+    } else {
+      return ''; // Return empty string if Google account is not available
+    }
+  }
 }
