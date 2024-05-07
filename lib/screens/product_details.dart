@@ -34,8 +34,32 @@ class ProductDetailsController extends GetxController {
         data.value = snapshot.data() ?? {};
         mat_data.value = materials_snapshot.data() ?? {};
       } else {
-        data.value = {};
-        mat_data.value={};
+        snapshot = await FirebaseFirestore.instance
+            .collection('Cosmetics')
+            .doc(documentId.trim()).get();
+        materials_snapshot = await FirebaseFirestore.instance
+            .collection('Cosmetics')
+            .doc(documentId.trim())
+            .collection('Ingredients')
+            .doc('materials')
+            .get();
+        if (snapshot.exists) {
+          data.value = snapshot.data() ?? {};
+          mat_data.value = materials_snapshot.data() ?? {};
+        } else {
+          data.value = {};
+          mat_data.value = {};
+          Get.back();
+          Fluttertoast.showToast(
+            msg: "Product details does not exist",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.grey.withOpacity(0.8),
+            textColor: Colors.black,
+            fontSize: 16.0,
+          );
+        }
       }
     } catch (e) {
       print('Error fetching data: $e');
@@ -62,6 +86,7 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product Details'),
+        backgroundColor: const Color(0xfff4f2f2),
       ),
       body: GetBuilder<ProductDetailsController>(
         init: ProductDetailsController(documentId: documentId),

@@ -15,7 +15,9 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan History',style: GoogleFonts.lexend(),),
+        title: Text('Scan History',style: GoogleFonts.lexend(),
+        ),
+        backgroundColor: const Color(0xfff4f2f2),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: fetchProductDetails(),
@@ -36,87 +38,70 @@ class HistoryPage extends StatelessWidget {
               );
             }
             else {
-              return ListView.separated(
-                itemBuilder: (context, index) {
-                  var product = products[index];
-                  var score = int.tryParse(
-                      product['score']?.toString() ?? '0') ?? 0;
-                  Color dotColor;
-                  if (score >= 80) {
-                    dotColor = Colors.green[900]!;
-                  } else if (score >= 70) {
-                    dotColor = Colors.green[400]!;
-                  } else if (score >= 50) {
-                    dotColor = Colors.yellow;
-                  } else if (score >= 30) {
-                    dotColor = Colors.orange;
-                  } else {
-                    dotColor = Colors.red;
-                  }
-                  return GestureDetector(
-                    onTap: () {
-                      Get.to(() => ProductDetailsPage(documentId: product['gtin']));
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListTile(
-                          title: Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: Row(
-                              children: [
-                                Expanded(
-
-                                  child: Text(
-                                    product['name'] ?? 'Unknown',
-                                    style: GoogleFonts.lexend(fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 30), // Add horizontal padding
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    var product = products[index];
+                    var score = int.tryParse(product['score']?.toString() ?? '0') ?? 0;
+                    Color dotColor;
+                    if (score >= 80) {
+                      dotColor = Colors.green[900]!;
+                    } else if (score >= 70) {
+                      dotColor = Colors.green[400]!;
+                    } else if (score >= 50) {
+                      dotColor = Colors.yellow;
+                    } else if (score >= 30) {
+                      dotColor = Colors.orange;
+                    } else {
+                      dotColor = Colors.red;
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: GestureDetector(
+                        onTap: ()=> {
+                          Get.to(()=> ProductDetailsPage(documentId: product['gtin']))
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xfff4f2f2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                            child: ListTile(
+                              title: Text(
+                                product['name'] ?? 'Unknown',
+                                style: GoogleFonts.lexend(fontSize: 21, fontWeight: FontWeight.w400),
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    score.toString(),
+                                    style: GoogleFonts.lexend(color: Colors.black,fontSize:15),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      score.toString(),
-                                      style: GoogleFonts.lexend(
-                                          color: Colors.black),
+                                  const SizedBox(width: 4),
+                                  Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: dotColor,
                                     ),
-                                    SizedBox(width: 4),
-                                    Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: dotColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, top: 5,bottom:15),
-                          child: Text(
-                            'Manufacturer: ${product['manufacturerId'] ??
-                                'Unknown'}',
-                            style: GoogleFonts.lexend(
-                              color: Colors.grey[600],
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) =>
-                    Divider(
-                      color: Colors.black,
-                      height: 1,
-                    ),
-                itemCount: products.length,
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(height: 8),
+                  itemCount: products.length,
+                ),
               );
             }
           }
@@ -141,7 +126,7 @@ class HistoryPage extends StatelessWidget {
           products.add({
             'name': data['Name'],
             'score': data['Score'],
-            'manufacturerId': data['Manufacturer'], // Assuming this is the manufacturer ID
+            //'manufacturerId': data['Manufacturer'], // Assuming this is the manufacturer ID
             'gtin' : gtin,
           });
         }

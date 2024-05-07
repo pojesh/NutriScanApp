@@ -3,6 +3,7 @@ import 'package:untitled1/screens/lander.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: true,
-          scaffoldBackgroundColor: const Color(0xfff4f2f2)
+          appBarTheme: AppBarTheme(
+            backgroundColor: const Color(0xfff4f2f2),
+            titleTextStyle: TextStyle(
+              fontFamily: GoogleFonts.lexend().fontFamily,
+              fontSize: 21,
+              color: Colors.black, // You might need to adjust this color as per your design
+            ),
+          ),
+          scaffoldBackgroundColor: const Color(0xfff4f2f2),
       ),
       home: LanderClass(),
     );
