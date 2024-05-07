@@ -54,7 +54,7 @@ class ProductDetailsController extends GetxController {
             msg: "Product details does not exist",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 2,
+            timeInSecForIosWeb: 3,
             backgroundColor: Colors.grey.withOpacity(0.8),
             textColor: Colors.black,
             fontSize: 16.0,
@@ -203,27 +203,30 @@ class ProductDetailsPage extends StatelessWidget {
                                     ),
                                   ),
 
-                                  SizedBox(width:100),
-                                  Container(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            value,
-                                            style: GoogleFonts.lexend(fontSize:14),
-                                          ),
-                                          SizedBox(width:10),
-                                          SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: _getDotColor(int.parse(value)),
-                                                shape: BoxShape.circle,
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:50),
+                                    child: Container(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              value,
+                                              style: GoogleFonts.lexend(fontSize:14),
+                                            ),
+                                            SizedBox(width:10),
+                                            SizedBox(
+                                              width: 20,
+                                              height: 20,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: _getDotColor(int.parse(value)),
+                                                  shape: BoxShape.circle,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      )
+                                          ],
+                                        )
+                                    ),
                                   )
                                 ],
                               ),
