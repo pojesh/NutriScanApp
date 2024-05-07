@@ -1,6 +1,8 @@
+
 // ignore_for_file: unnecessary_import, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:untitled1/screens/historypage.dart';
 import 'package:untitled1/screens/product_details.dart';
 import 'package:untitled1/screens/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 class LanderClass extends StatelessWidget {
   final controller = Get.put(LoginController());
   final RxString barcodeResult = ''.obs;
+  final List<String> scannedProducts = <String>[].obs;
 
   Future<void> scanBarcode() async {
     try {
@@ -26,8 +29,12 @@ class LanderClass extends StatelessWidget {
 
       if (barcodeResult.length >= 9) {
         final String gtin = barcodeResult.substring(3, 9);
+        if (!scannedProducts.contains(gtin)) {
+          scannedProducts.add(gtin);
+        }
         Get.to(() => ProductDetailsPage(documentId: gtin));
-      } else {
+      }
+      else {
         // Handle invalid barcode result
         debugPrint('Invalid barcode result');
       }
@@ -36,8 +43,10 @@ class LanderClass extends StatelessWidget {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Center(
         child: Obx(() {
@@ -214,7 +223,7 @@ class LanderClass extends StatelessWidget {
                             )
                         ),
                         Text(
-                            'Scanned 483',
+                            'Scanned ${scannedProducts.length}',
                             style: GoogleFonts.lexend(
                                 fontSize: 13,
                                 textStyle: TextStyle(
@@ -238,6 +247,7 @@ class LanderClass extends StatelessWidget {
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(16),
                   ),
+
                   child: Column(
                     children: [
                       Padding(
@@ -254,7 +264,7 @@ class LanderClass extends StatelessWidget {
                           )
                       ),
                       Text(
-                          'Avoided 32',
+                          'Avoided 0',
                           style: GoogleFonts.lexend(
                               fontSize: 13,
                               textStyle: TextStyle(
@@ -270,6 +280,7 @@ class LanderClass extends StatelessWidget {
           ],
         ),
         Row(
+
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
@@ -298,7 +309,7 @@ class LanderClass extends StatelessWidget {
                           )
                       ),
                       Text(
-                          'Alternatives 8',
+                          'Alternatives 0',
                           style: GoogleFonts.lexend(
                               fontSize: 13,
                               textStyle: TextStyle(
@@ -312,43 +323,49 @@ class LanderClass extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right:10,top:60),
-              child: SizedBox(
-                height: 178,
-                width: 160,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top:30,bottom:10),
-                        child: Image(
-                          image: AssetImage('lib/asset/images/history.png'),
-                          width: 55,
-                        ),
+                padding: const EdgeInsets.only(right:10,top:60),
+                child: SizedBox(
+                  height: 178,
+                  width: 160,
+
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() => HistoryPage(scannedProducts: scannedProducts));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      Text(
-                          'History',
-                          style: GoogleFonts.lexend(
-                            fontSize: 18,
-                          )
-                      ),
-                      Text(
-                          'History 26',
-                          style: GoogleFonts.lexend(
-                              fontSize: 13,
-                              textStyle: TextStyle(
-                                  fontWeight: FontWeight.w300
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top:30,bottom:10),
+                            child: Image(
+                              image: AssetImage('lib/asset/images/history.png'),
+                              width: 55,
+                            ),
+                          ),
+                          Text(
+                              'History',
+                              style: GoogleFonts.lexend(
+                                fontSize: 18,
+                              )
+                          ),
+                          Text(
+                              'History ${scannedProducts.length}',
+                              style: GoogleFonts.lexend(
+                                  fontSize: 13,
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.w300
+                                  )
                               )
                           )
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                )
             )
           ],
         )
