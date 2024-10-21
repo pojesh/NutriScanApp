@@ -50,10 +50,9 @@ By giving consumers transparent, actionable information, NutriScan promotes info
 
 ## Version History
 ### v1.5 (Published in repository releases)
-- Implemented enhanced barcode scanning functionality.
+- Enhanced overall functionality.
 - Improved user interface for better navigation and readability.
-- Added personalized recommendations based on user health preferences.
-- Optimized performance on both Android and iOS platforms.
+- Optimized performance on Android.
   
 ## Future Enhancements
 - **Multi-language Support**: Expanding to more languages to cater to global users.
